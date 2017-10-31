@@ -15,6 +15,10 @@ mongoose.Promise = global.Promise;
 
 
 app.get('/posts', (req, res) => {
+  //res.json({'message':"working"});
+  
+ // console.log(BlogPost.find());
+ 
   BlogPost
     .find()
     .then(posts => {
@@ -24,6 +28,8 @@ app.get('/posts', (req, res) => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
     });
+    
+    
 });
 
 app.get('/posts/:id', (req, res) => {
@@ -124,7 +130,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
         return reject(err);
       }
       server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
+        console.log(`Your app is working on port ${port}`);
         resolve();
       })
       .on('error', err => {
